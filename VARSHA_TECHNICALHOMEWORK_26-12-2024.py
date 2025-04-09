@@ -10,7 +10,7 @@ class StudentMarks:
             try:
                 print("Enter your choice (+, -, *, /, Q to Quit): ")
                 CH = input("Enter your choice: ").strip()
-                if CH not in ['+', '-', '*', '/', 'Q']:
+                if CH not in {'+':"add", '-':"sub", '*':"mul", '/':"div", 'Q':"quit"}:
                     raise KeyError("Invalid operation.")
 
                 if CH == '+':

@@ -1,5 +1,20 @@
 import random
 
+class CreditCardPayment:
+    def pay(self,amount):
+        return f"paid {amount} using creditcard"
+class PayPalPayment:
+    def pay(self,amount):
+        return f"paid {amount} using PayPal"
+class DebitCardPayment:
+    def pay(self,amount):
+        return f"paid {amount} using debitcard"
+class GPayPayment:
+    def pay(self,amount):
+        return f"paid {amount} using GPay"
+def process_payment(payment_method,amount):
+    print(payment_method.pay(amount))
+    
 class Customer:
     def __init__(self, cust_id, name, phone_number):
         self.cust_id = cust_id
@@ -60,7 +75,29 @@ class TicketBooking:
         else:
             for tick in cus_ticket:
                 print(f"Event: {tick['Event_name']}, Quantity: {tick['No_of_Tickets']}, Total Cost: {tick['Price_Total']}")
-
+                Flag = True
+                while Flag:
+                    print("\n**********Payment Option**********")
+                    print("1. Credit Card")
+                    print("2. PayPal")
+                    print("3. Debit Card")
+                    print("4. Gpay")
+                    print("5.Quit")
+                    choice = int(input("Enter your choice: "))
+                    if choice == 1:
+                        cc=CreditCardPayment()
+                        process_payment(cc,{tick['Price_Total']})
+                    elif choice == 2:
+                        pp=PayPalPayment()
+                        process_payment(pp,{tick['Price_Total']})
+                    elif choice == 3:
+                        dc=DebitCardPayment()
+                        process_payment(dc,{tick['Price_Total']})
+                    elif choice == 3:
+                        gp=GPayPayment()
+                        process_payment(gp,{tick['Price_Total']})
+                    elif choice==4:
+                        Flag = False
 if __name__ == "__main__":
     book = TicketBooking()
     print("*********************Welcome to Ticket Booking Application*********************")
@@ -84,7 +121,7 @@ if __name__ == "__main__":
         print("\n**********Booking Info**********")
         print("1. View Events")
         print("2. Book Tickets")
-        print("3. View My Tickets")
+        print("3. View My Tickets and payment option")
         print("4. Exit")
         choice = int(input("Enter your choice: "))
 
